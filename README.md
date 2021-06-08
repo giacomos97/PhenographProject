@@ -14,12 +14,13 @@ The program expects **two** .csv files inside *dataset* directory:
 - **LNBmatrix.csv**, containing data on single-cell measurements.  
 The document should be organized as: one row for each cell, one column for each measurement.  
 - **LNBcentroids.csv**, containing the spatial coordinates of each cell.  
-The document should contain three columns (without header): 'cell', 'x', 'y'.    
+The document should contain three columns (without header): cell number, x coordinate, y coordinate.    
 
 Both files should describe the exact same amount of cells.  
 
 ### Structure of the project  
 Once verified that your input data is structured as expected, run the [clustering.py](./clustering.py) file.  
-Check messages and results appearing in the console during execution. At each step, a backup copy of the data will be saved in *backup* directory.  
-All plots will also be saved inside *figures* directory.
+Check messages and results appearing in the console during execution.
+At each step, a backup copy of the data will be saved in *backup* directory.
+All plots shown will also be saved inside *figures* directory.
 
