@@ -1,0 +1,13 @@
+[parameters]
+clustering_algo = louvain
+n_neighbors = 15
+n_jobs = 4
+pca_n_comps = 0
+umap_n_comps = 2
+init_seed = 000
+
+[paths]
+data_source: ./dataset/data_full_normalized.csv
+coordinates_source: ./dataset/prova_centroidi.csv
+
+[settings]

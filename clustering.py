@@ -1,12 +1,5 @@
 """
 @author: Giacomo Spisni
-
-References:
-https://scanpy.readthedocs.io/en/stable/api/scanpy.tl.pca.html
-https://scanpy.readthedocs.io/en/stable/api/scanpy.pl.pca.html
-https://scanpy.readthedocs.io/en/stable/external/scanpy.external.tl.phenograph.html
-https://scanpy.readthedocs.io/en/stable/api/scanpy.tl.umap.html
-https://scanpy.readthedocs.io/en/stable/api/scanpy.pl.umap.html
 """
 
 # %% Imports and setup
@@ -19,6 +12,12 @@ import pathlib
 from pathlib import Path
 import plotly.graph_objects as go
 from datetime import datetime
+import configparser
+import uuid
+
+# Reading configuration file
+config = configparser.ConfigParser()
+config.read('configuration.txt')
 
 # Scanpy parameters
 sc.settings.verbose = 3
@@ -31,13 +30,15 @@ pathlib.Path('backup').mkdir(parents=True, exist_ok=True)
 directory = Path.cwd()
 
 # Files to be processed
-data_source = directory/"dataset/LNBmatrix.csv" 
-coordinates_source = directory/"dataset/LNBcentroids.csv"
+data_source = pathlib.Path(config.get('paths', 'data_source'))
+coordinates_source = pathlib.Path(config.get('paths', 'coordinates_source'))
 
 # %% Data reading
 
-timestamp = datetime.timestamp(datetime.now())
-print(f'Current run timestamp: {timestamp} .')
+# Generate an unique identifier for this run
+filename = uuid.uuid4().hex
+
+print(f'Current run ID: {filename}.')
 print(f"[{datetime.now()}] Process started.")
 
 # Read files 
@@ -56,15 +57,34 @@ adata = AnnData(data)
 print(f"[{datetime.now()}] Data reading completed.")
 
 # %%  Data analysis
+
 # Setup
-clustering_algo = "louvain" # 'louvain' or 'leiden'
-n_neighbors = 15
-n_jobs = 4
-n_comps = len(data.columns)-1 # No components reduction
+clustering_algo = config.get('parameters', 'clustering_algo')
+n_neighbors = config.get('parameters', 'n_neighbors')
+n_jobs = config.get('parameters', 'n_jobs')
+pca_n_comps = config.get('parameters', 'pca_n_comps')
+umap_n_comps = config.get('parameters', 'umap_n_comps')
+
+# Check maximum number of components
+n_comps = len(data.columns)-1
+
+if (pca_n_comps <= 0):
+    if (pca_n_comps == 0):
+        pca_n_comps = n_comps   # No components reduction
+    else:
+        pca_n_comps = n_comps + pca_n_comps     # Subtract the requested amount of components
+
+if (umap_n_comps <= 0):
+    if (umap_n_comps == 0):
+        umap_n_comps = n_comps   # No components reduction
+    else:
+        umap_n_comps = n_comps + umap_n_comps     # Subtract the requested amount of components
+    
+
 
 # 1. Principal Component Analysis
 adata = sc.tl.pca(adata,
-                  n_comps = n_comps,
+                  n_comps = pca_n_comps,
                   copy = True
                  ) 
 
@@ -78,31 +98,30 @@ adata = sc.tl.pca(adata,
 #          save = f'_{timestamp}.png'
 #         )
 
-adata.write(f'backup/{timestamp}_PCA_backup.h5ad')
+adata.write(f'backup/{filename}_PCA_backup.h5ad')
 print(f'[{datetime.now()}] PCA completed.')
 
 # 2. UMAP
 # Setup
 init_seed = np.random.randint(0, 100)
-reduced_n_comps = 2
 
 # Neighbors graph
 sc.pp.neighbors(adata,
                 n_neighbors = n_neighbors,
-                n_pcs = n_comps,
+                n_pcs = umap_n_comps,
                 random_state = init_seed,
                 method = 'umap',
                 copy = False
                )
-adata.write(f'backup/{timestamp}_NEIGHBORS_backup.h5ad')
+adata.write(f'backup/{filename}_NEIGHBORS_backup.h5ad')
 
 # UMAP reduction
 sc.tl.umap(adata,
            random_state = init_seed,
-           n_components = reduced_n_comps,
+           n_components = umap_n_comps,
            copy = False
           )
-adata.write(f'backup/{timestamp}_UMAP_backup.h5ad')
+adata.write(f'backup/{filename}_UMAP_backup.h5ad')
 
 # Plot UMAP results (unclustered)
 #sc.pl.umap(adata,
@@ -137,7 +156,7 @@ adata.obs['PhenoGraph_clusters'] = pd.Categorical(communities)
 adata.uns['PhenoGraph_Q'] = Q
 adata.uns['PhenoGraph_k'] = n_neighbors
 
-adata.write(f'backup/{timestamp}_PhenoGraph_backup.h5ad')
+adata.write(f'backup/{filename}_PhenoGraph_backup.h5ad')
 
 # Re-plot UMAP results (clustered)
 sc.pl.umap(adata,
@@ -149,7 +168,7 @@ sc.pl.umap(adata,
            legend_fontsize = 10,
 #           ncols = 2,
            title = f'PhenoGraph clusters with k={n_neighbors}',
-           save = f'_{timestamp}.png'
+           save = f'_{filename}.png'
         )
 
 print(f'[{datetime.now()}] Clustering completed.')
@@ -180,6 +199,6 @@ fig.update_layout(title = f'Spatial distribution of clustered cells (k = {n_neig
                  )
 
 fig.show()
-fig.write_html(f"figures/Clustered_{timestamp}.html")
+fig.write_html(f"figures/Clustered_{filename}.html")
 
 print(f'[{datetime.now()}] Process completed.')
