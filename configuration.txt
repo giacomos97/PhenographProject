@@ -7,7 +7,9 @@ umap_n_comps = 2
 init_seed = 000
 
 [paths]
-data_source: ./dataset/data_full_normalized.csv
-coordinates_source: ./dataset/prova_centroidi.csv
+data_source: ./dataset/data_full_normalized_truncated.csv
+coordinates_source: ./dataset/prova_centroidi_truncated.csv
+figures_dir: ./figures
+temp_dir: ./temp
 
 [settings]
