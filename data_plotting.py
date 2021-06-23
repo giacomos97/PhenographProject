@@ -65,7 +65,7 @@ def UMAP(filename, temp_dir, figures_dir):
     
     # Plot PCA results
     sc.pl.umap(adata,
-               color = ['PhenoGraph_clusters'],
+               color = ['PhenoGraph_clusters_Categorical'],
     #           components = ['1,2','44,45'],
     #           projection = '2d',
                palette = sc.pl.palettes.vega_20_scanpy,
@@ -101,7 +101,7 @@ def CLUSTERS(filename, temp_dir, figures_dir):
     Q = adata.uns['PhenoGraph_Q']
     n_neighbors= adata.uns['PhenoGraph_k']
     
-    communities = adata.obs['PhenoGraph_clusters']
+    communities = adata.obs['PhenoGraph_clusters_numeric']
     communities = communities.to_frame()
     communities.reset_index(inplace = True, drop = True)
     
@@ -113,7 +113,7 @@ def CLUSTERS(filename, temp_dir, figures_dir):
     fig = go.Figure()
     
     # Plot each cluster with different colors
-    for cell_cluster,grp in coordinates.groupby('PhenoGraph_clusters'):
+    for cell_cluster,grp in coordinates.groupby('PhenoGraph_clusters_numeric'):
         fig.add_trace(go.Scattergl(x = grp['x'],
                                    y = grp['y'],
                                    mode = 'markers',

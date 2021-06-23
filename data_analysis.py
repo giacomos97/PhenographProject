@@ -8,6 +8,7 @@ import scanpy as sc
 import scanpy.external as sce
 import numpy as np
 from datetime import datetime
+import pandas as pd
 
 # FUNCTIONS
 def PCA(filename, temp_dir, config):
@@ -199,7 +200,8 @@ def PHENOGRAPH(filename, temp_dir, config):
                                               copy = True
                                              )
     # Also store results in adata
-    adata.obs['PhenoGraph_clusters'] = communities
+    adata.obs['PhenoGraph_clusters_Categorical'] = pd.Categorical(communities)
+    adata.obs['PhenoGraph_clusters_numeric'] = communities
     adata.uns['PhenoGraph_Q'] = Q
     adata.uns['PhenoGraph_k'] = n_neighbors
 
