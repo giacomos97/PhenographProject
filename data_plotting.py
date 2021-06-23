@@ -9,13 +9,15 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # FUNCTIONS
-def PCA(filename, temp_dir):
+def PCA(filename, temp_dir, figures_dir):
     '''
     Parameters
     ----------
     filename : TYPE
         DESCRIPTION.
     temp_dir : TYPE
+        DESCRIPTION.
+    figures_dir : TYPE
         DESCRIPTION.
 
     Returns
@@ -40,13 +42,15 @@ def PCA(filename, temp_dir):
         
     return filename
 
-def UMAP(filename, temp_dir):
+def UMAP(filename, temp_dir, figures_dir):
     '''
     Parameters
     ----------
     filename : TYPE
         DESCRIPTION.
     temp_dir : TYPE
+        DESCRIPTION.
+    figures_dir : TYPE
         DESCRIPTION.
 
     Returns
@@ -74,13 +78,15 @@ def UMAP(filename, temp_dir):
     return filename
 
 
-def CLUSTERS(filename, temp_dir):
+def CLUSTERS(filename, temp_dir, figures_dir):
     '''
     Parameters
     ----------
     filename : TYPE
         DESCRIPTION.
     temp_dir : TYPE
+        DESCRIPTION.
+    figures_dir : TYPE
         DESCRIPTION.
 
     Returns
@@ -103,7 +109,6 @@ def CLUSTERS(filename, temp_dir):
     
     # Associate each coordinate to a cluster
     coordinates = pd.concat([coordinates, communities], axis=1)
-    print (coordinates)
     
     fig = go.Figure()
     
@@ -128,6 +133,6 @@ def CLUSTERS(filename, temp_dir):
                      )
     
     fig.show()
-    fig.write_html(f"figures/{filename}_clusters.html")
+    fig.write_html(f"{figures_dir}/{filename}_clusters.html")
     
     return filename

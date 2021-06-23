@@ -40,5 +40,5 @@ data_analysis.UMAP(filename, temp_dir, config)
 data_analysis.PHENOGRAPH(filename, temp_dir, config)
 
 # DATA PLOTTING 
-data_plotting.UMAP(filename, temp_dir)
-data_plotting.CLUSTERS(filename, temp_dir)
+data_plotting.UMAP(filename, temp_dir, figures_dir)
+data_plotting.CLUSTERS(filename, temp_dir, figures_dir)
