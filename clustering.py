@@ -15,15 +15,16 @@ import data_plotting
 config = configparser.ConfigParser()
 config.read('configuration.txt')
 
-# Scanpy parameters
-sc.settings.verbose = 3
-sc.set_figure_params(dpi = 600)
-
 # Select directories
 data_source = pathlib.Path(config.get('paths', 'data_source'))
 coordinates_source = pathlib.Path(config.get('paths', 'coordinates_source'))
 figures_dir = pathlib.Path(config.get('paths', 'figures_dir'))
 temp_dir = pathlib.Path(config.get('paths', 'temp_dir'))
+
+# Scanpy parameters
+sc.settings.verbose = 3
+sc.set_figure_params(dpi = 600)
+sc.settings.figdir = figures_dir
 
 # Prepare workspace
 pathlib.Path(figures_dir).mkdir(parents = True, exist_ok = True)
