@@ -3,7 +3,7 @@ Repository dedicated to my project on PhenoGraph.
 
 ## Pre-requisites  
 To run this code, install in your environment the following libraries.  
-`anndata scanpy numpy pandas pathlib plotly datetime`  
+`anndata scanpy numpy pandas pathlib plotly datetime configparser uuid`  
 
 ## How to run the code  
 Following these instructions you may run the code without having to change it.  
@@ -12,11 +12,22 @@ Check the *Setup* paramaters inside the [clustering.py](./clustering.py) file if
 ### Structure of input data  
 The program expects **two** .csv files inside *dataset* directory:  
 - **LNBmatrix.csv**, containing data on single-cell measurements.  
-The document should be organized as: one row for each cell, one column for each measurement.  
-- **LNBcentroids.csv**, containing the spatial coordinates of each cell.  
-The document should contain three columns (without header): cell number, x coordinate, y coordinate.    
+The document should contain comma separated columns and be organized as: one row for each cell, one column for each feature.  
+For example:  
+|  CD14C01CD16C02HL | CD14C01CD16C02HLA | CD1aC01SynCAMC02RB | ... |
+|  0.14532181994838 |  -0.7427901168535 |   0.8510099217044  |     |
+| 0.009652348004606 |  0.14532181994838 |  -1.0977624202569  |     |
+|        ...        |                   |                    |     |
 
-Both files should describe the exact same amount of cells.  
+- **LNBcentroids.csv**, containing the spatial coordinates of each cell.  
+The document should contain three comma-separated columns (without header): cell number, x coordinate, y coordinate.  
+For example:  
+|   1  |  5  | 7.5 |
+|   2  |  8  |  7  |
+|   3  | 5.2 |  7  |
+|  ... |     |     |  
+
+Cell number should have exact correspondence in both files, thus they should contain the same amount of cells.  
 
 ### Structure of the project  
 Once verified that your input data is structured as expected, run the [clustering.py](./clustering.py) file.  
