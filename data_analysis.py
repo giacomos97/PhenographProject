@@ -13,19 +13,23 @@ import pandas as pd
 # FUNCTIONS
 def PCA(filename, temp_dir, config):
     '''
+    Perform Principal Component Analysis on the dataset identified by filename in temp_dir.
+    Use parameters in scanpy_PCA section of the configuration file.
+    Overwrite the dataset in temp_dir with the achieved results.
+    
     Parameters
     ----------
-    filename : TYPE
-        DESCRIPTION.
-    temp_dir : TYPE
-        DESCRIPTION.
-    config : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier of this dataset stored in temp_dir.
+    temp_dir : path object of pathlib module.
+        Directory where the temporary copy of the datasets is stored.
+    config : ConfigParser object of configparser module.
+        Configuration file.
 
     Returns
     -------
-    filename : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier of this dataset stored in temp_dir.
 
     '''
     
@@ -57,22 +61,25 @@ def PCA(filename, temp_dir, config):
     
     return filename
 
-
 def NEIGHBORS(filename, temp_dir, config):
     '''
+    Compute a neighborhood graph on the dataset identified by filename in temp_dir.
+    Use parameters in scanpy_NEIGHBORS section of the configuration file.
+    Overwrite the dataset in temp_dir with the achieved results.
+    
     Parameters
     ----------
-    filename : TYPE
-        DESCRIPTION.
-    temp_dir : TYPE
-        DESCRIPTION.
-    config : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier of this dataset stored in temp_dir.
+    temp_dir : path object of pathlib module.
+        Directory where the temporary copy of the datasets is stored.
+    config : ConfigParser object of configparser module.
+        Configuration file.
 
     Returns
     -------
-    filename : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier of this dataset stored in temp_dir.
 
     '''
     
@@ -109,22 +116,25 @@ def NEIGHBORS(filename, temp_dir, config):
     
     return filename
     
-
 def UMAP(filename, temp_dir, config):
     '''
+    Perform dimensional reduction with UMAP on the dataset identified by filename in temp_dir.
+    Use parameters in scanpy_UMAP section of the configuration file.
+    Overwrite the dataset in temp_dir with the achieved results.
+    
     Parameters
     ----------
-    filename : TYPE
-        DESCRIPTION.
-    temp_dir : TYPE
-        DESCRIPTION.
-    config : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier of this dataset stored in temp_dir.
+    temp_dir : path object of pathlib module.
+        Directory where the temporary copy of the datasets is stored.
+    config : ConfigParser object of configparser module.
+        Configuration file.
 
     Returns
     -------
-    filename : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier of this dataset stored in temp_dir.
 
     '''
     
@@ -158,22 +168,25 @@ def UMAP(filename, temp_dir, config):
     
     return filename
 
-
 def PHENOGRAPH(filename, temp_dir, config):
     '''
+    Perform clustering with PhenoGraph on the dataset identified by filename in temp_dir.
+    Use parameters in scanpy_PHENOGRAPH section of the configuration file.
+    Overwrite the dataset in temp_dir with the achieved results.
+    
     Parameters
     ----------
-    filename : TYPE
-        DESCRIPTION.
-    temp_dir : TYPE
-        DESCRIPTION.
-    config : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier of this dataset stored in temp_dir.
+    temp_dir : path object of pathlib module.
+        Directory where the temporary copy of the datasets is stored.
+    config : ConfigParser object of configparser module.
+        Configuration file.
 
     Returns
     -------
-    filename : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier of this dataset stored in temp_dir.
 
     '''
     

@@ -9,21 +9,26 @@ from datetime import datetime
 import uuid
 
 # FUNCTIONS
-def READ(data_source, coordinates_source, temp_dir):
+def READ(data_source, coordinates_source, temp_dir, config):
     '''
+    Read original dataset containing single-cell measurements and spatial coordinates,
+    then store their cleaned copy with an uniquely identifying name.
+
     Parameters
     ----------
-    data_source : TYPE
-        DESCRIPTION.
-    coordinates_source : TYPE
-        DESCRIPTION.
-    temp_dir : TYPE
-        DESCRIPTION.
+    data_source : path object of pathlib module.
+        Directory where to read the original dataset containing single-cell measurements.
+    coordinates_source : path object of pathlib module.
+        Directory where to read the original dataset containing spatial coordinates.
+    temp_dir : path object of pathlib module.
+        Directory where to store the temporary copy of the datasets.
+    config : ConfigParser object of configparser module.
+        Configuration file.
 
     Returns
     -------
-    filename : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier generated for this dataset stored in temp_dir.
 
     '''
     

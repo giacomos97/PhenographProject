@@ -13,16 +13,16 @@ Both documents implement the same procedure.
 
 ### Structure of input data  
 The program expects **two** .csv files:  
-- One file containing data on single-cell measurements.  
+- **One file containing data on single-cell measurements**.  
 The document should contain comma separated columns and be organized as: one row for each cell, one column for each feature.  
 For example:  
-|  CD14C01CD16C02HL | CD14C01CD16C02HLA | CD1aC01SynCAMC02RB | ... |
+| CD14C01CD16C02HL  | CD14C01CD16C02HLA | CD1aC01SynCAMC02RB | ... |
 |:-----------------:|:-----------------:|:------------------:|:---:|
 |  0.14532181994838 |  -0.7427901168535 |   0.8510099217044  |     |
 | 0.009652348004606 |  0.14532181994838 |  -1.0977624202569  |     |
-|        ...        |                   |                    |     |
+|        ...        |                   |                    |     |  
 
-- Another file containing the spatial coordinates of each cell.  
+- **Another file containing the spatial coordinates of each cell**.  
 The document should contain three comma-separated columns (without header): cell number, x coordinate, y coordinate.  
 For example:  
 |   1  |  5  | 7.5 |
@@ -30,7 +30,7 @@ For example:
 |   2  |  8  |  7  |
 |   3  | 5.2 |  7  |
 |  ... |     |     |  
-
+  
 Cell number should have exact correspondence in both files, thus they should contain the same amount of cells.  
 
 ### Structure of the project  

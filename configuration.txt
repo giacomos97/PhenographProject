@@ -13,3 +13,7 @@ figures_dir: ./figures
 temp_dir: ./temp
 
 [settings]
+
+
+[scanpy_figures]
+dpi = 600
