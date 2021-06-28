@@ -40,10 +40,16 @@ def READ(data_source, coordinates_source, temp_dir, config):
     
     # Read files 
     data = pd.read_csv(data_source)
+    data.rename(columns = {data.columns[0]: 'cell'}, inplace = True)
+    
     coordinates = pd.read_csv(coordinates_source, header = None, names = ['cell','x','y'])
+    
+    # Sort by cell number to ensure 1-1 correspondence of rows
+    data.sort_values(by = ['cell'], inplace = True)
+    coordinates.sort_values(by = ['cell'], inplace = True)
 
     # Clean up data
-    data.drop(['Unnamed: 0'], axis = 1, errors = 'ignore', inplace = True)
+    data.drop(['cell'], axis = 1, errors = 'ignore', inplace = True)
     coordinates.drop(['cell'], axis = 1, errors = 'ignore', inplace = True)
 
     data.astype('float', copy = False)

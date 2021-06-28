@@ -1,6 +1,6 @@
 [paths]
-data_source: ./dataset/data_full_normalized_truncated.csv
-coordinates_source: ./dataset/prova_centroidi_truncated.csv
+data_source: ./dataset/LNBmatrix_demo.csv
+coordinates_source: ./dataset/LNBcentroids_demo.csv
 figures_dir: ./figures
 temp_dir: ./temp
 
