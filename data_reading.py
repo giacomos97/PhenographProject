@@ -44,6 +44,7 @@ def READ(data_source, coordinates_source, temp_dir, config):
 
     # Clean up data
     data.drop(['Unnamed: 0'], axis = 1, errors = 'ignore', inplace = True)
+    coordinates.drop(['cell'], axis = 1, errors = 'ignore', inplace = True)
 
     data.astype('float', copy = False)
     coordinates.astype('float', copy = False)
