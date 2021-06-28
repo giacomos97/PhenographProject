@@ -38,20 +38,20 @@ def PCA(filename, temp_dir, config):
     adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
     
     # Setup
-    pca_n_comps = int(config.get('parameters', 'pca_n_comps'))
+    n_comps = int(config.get('scanpy_PCA', 'n_comps'))
 
     # Check number of components
-    n_comps = len(adata.var_names)-1
+    max_n_comps = len(adata.var_names)-1
 
-    if (pca_n_comps <= 0):
-        if (pca_n_comps == 0):
-            pca_n_comps = n_comps   # No components reduction
+    if (n_comps <= 0):
+        if (n_comps == 0):
+            n_comps = max_n_comps   # No components reduction
         else:
-            pca_n_comps = n_comps + pca_n_comps     # Subtract the requested amount of components
+            n_comps = max_n_comps + n_comps     # Subtract the requested amount of components
     
     # Perform PCA
     sc.tl.pca(adata,
-              n_comps = pca_n_comps,
+              n_comps = n_comps,
               copy = False
               ) 
     
@@ -88,23 +88,23 @@ def NEIGHBORS(filename, temp_dir, config):
     adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
     
     # Setup
-    umap_n_comps = int(config.get('parameters', 'umap_n_comps'))
-    n_neighbors = int(config.get('parameters', 'n_neighbors'))
+    n_comps = int(config.get('scanpy_NEIGHBORS', 'n_comps'))
+    n_neighbors = int(config.get('scanpy_NEIGHBORS', 'n_neighbors'))
     init_seed = np.random.randint(0, 100)
 
     # Check number of components
-    n_comps = len(adata.var_names)-1
+    max_n_comps = len(adata.var_names)-1
 
-    if (umap_n_comps <= 0):
-        if (umap_n_comps == 0):
-            umap_n_comps = n_comps   # No components reduction
+    if (n_comps <= 0):
+        if (n_comps == 0):
+            n_comps = max_n_comps   # No components reduction
         else:
-            umap_n_comps = n_comps + umap_n_comps     # Subtract the requested amount of components
+            n_comps = max_n_comps + n_comps     # Subtract the requested amount of components
    
     # Neighbors graph
     sc.pp.neighbors(adata,
                     n_neighbors = n_neighbors,
-                    n_pcs = umap_n_comps,
+                    n_pcs = n_comps,
                     random_state = init_seed,
                     method = 'umap',
                     copy = False
@@ -143,22 +143,22 @@ def UMAP(filename, temp_dir, config):
     adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
     
     # Setup
-    umap_n_comps = int(config.get('parameters', 'umap_n_comps'))
+    n_comps = int(config.get('scanpy_UMAP', 'n_comps'))
     init_seed = np.random.randint(0, 100)
 
     # Check number of components
-    n_comps = len(adata.var_names)-1
+    max_n_comps = len(adata.var_names)-1
 
-    if (umap_n_comps <= 0):
-        if (umap_n_comps == 0):
-            umap_n_comps = n_comps   # No components reduction
+    if (n_comps <= 0):
+        if (n_comps == 0):
+            n_comps = max_n_comps   # No components reduction
         else:
-            umap_n_comps = n_comps + umap_n_comps     # Subtract the requested amount of components
+            n_comps = max_n_comps + n_comps     # Subtract the requested amount of components
    
     # Perform UMAP
     sc.tl.umap(adata,
                random_state = init_seed,
-               n_components = umap_n_comps,
+               n_components = n_comps,
                copy = False
               )
 
@@ -195,9 +195,9 @@ def PHENOGRAPH(filename, temp_dir, config):
     adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
     
     # Setup
-    clustering_algo = config.get('parameters', 'clustering_algo')
-    n_neighbors = int(config.get('parameters', 'n_neighbors'))
-    n_jobs = int(config.get('parameters', 'n_jobs'))
+    clustering_algo = config.get('scanpy_PHENOGRAPH', 'clustering_algo')
+    n_neighbors = int(config.get('scanpy_PHENOGRAPH', 'n_neighbors'))
+    n_jobs = int(config.get('scanpy_PHENOGRAPH', 'n_jobs'))
    
     # Perform PHENOGRAPH
     '''

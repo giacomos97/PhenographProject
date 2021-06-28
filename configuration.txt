@@ -1,11 +1,3 @@
-[parameters]
-clustering_algo = louvain
-n_neighbors = 15
-n_jobs = 4
-pca_n_comps = 0
-umap_n_comps = 2
-init_seed = 000
-
 [paths]
 data_source: ./dataset/data_full_normalized_truncated.csv
 coordinates_source: ./dataset/prova_centroidi_truncated.csv
@@ -17,3 +9,29 @@ temp_dir: ./temp
 
 [scanpy_figures]
 dpi = 600
+
+
+[scanpy_PCA]
+n_comps = 0
+
+[scanpy_NEIGHBORS]
+n_comps = 2
+n_neighbors = 15
+init_seed = 000
+
+[scanpy_UMAP]
+n_comps = 2
+init_seed = 000
+
+[scanpy_PHENOGRAPH]
+clustering_algo = louvain
+n_neighbors = 15
+n_jobs = 4
+
+[scanpy_PCA_plot]
+
+
+[scanpy_UMAP_plot]
+
+
+[scanpy_CLUSTERS_plot]
