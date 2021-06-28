@@ -90,7 +90,7 @@ def NEIGHBORS(filename, temp_dir, config):
     # Setup
     n_comps = int(config.get('scanpy_NEIGHBORS', 'n_comps'))
     n_neighbors = int(config.get('scanpy_NEIGHBORS', 'n_neighbors'))
-    init_seed = np.random.randint(0, 100)
+    init_seed = int(config.get('scanpy_NEIGHBORS', 'init_seed'))
 
     # Check number of components
     max_n_comps = len(adata.var_names)-1
@@ -144,7 +144,7 @@ def UMAP(filename, temp_dir, config):
     
     # Setup
     n_comps = int(config.get('scanpy_UMAP', 'n_comps'))
-    init_seed = np.random.randint(0, 100)
+    init_seed = int(config.get('scanpy_UMAP', 'init_seed'))
 
     # Check number of components
     max_n_comps = len(adata.var_names)-1
