@@ -26,7 +26,7 @@ For example:
 | ... |                   |                   |                    |     |  
 
 - **Another file containing the spatial coordinates of each cell**.  
-The document should contain three comma-separated columns (without header): cell number, x coordinate, y coordinate.  
+The document should contain three comma-separated columns (without any header) describing: cell number, x coordinate, y coordinate.  
 For example:  
 
 |      |     |     |
@@ -35,11 +35,54 @@ For example:
 |   2  |  8  |  7  |
 |   3  | 5.2 |  7  |
 |  ... |     |     |  
-  
-Cell number must have exact correspondence in both files (i.e. cell number 1 corresponds to first row in measurements file). Hence both files should contain the same amount of cells.  
 
-### Preparation of *configuration.txt*  
-Details available soon.  
+Cell number must have exact correspondence in both files (i.e. cell number 1 in measurements file should correspond to cell number 1 in coordinates file). Hence both files should contain the same amount of cells.  
+
+### Parameters in *configuration.txt*  
+**[paths]**  
+*data_source* -> Path of .csv file containing single-cell measurements. 
+ 
+*coordinates_source* -> Path of .csv file containing cells' coordinates.  
+
+*figures_dir* -> Path where output figures will be stored (automatically created if not existing).  
+
+*temp_dir* -> Path where output temporary files will be stored (automatically created if not existing). 
+  
+**[scanpy_figures]**
+Parameters listed in this category will be provided to the *scanpy.set_figure_params* method. 
+  
+**[scanpy_PCA]**  
+*n_comps* -> Number of components obtained from PCA. Possible values: **0** (mantain all the components available - no reduction), any **n>0** (reduce *to* n components), any **n<0** (reduce *by* n dimensions from the maximum number of available components). Indeed, this value must not exceed the effective number of components available.
+  
+**[scanpy_NEIGHBORS]**  
+*n_comps* -> Number of components obtained from neighborhood graph. Possible values: **0** (mantain all the components available - no reduction), any **n>0** (reduce *to* n components), any **n<0** (reduce *by* n dimensions from the maximum number of available components). Indeed, this value must not exceed the effective number of components available.  
+
+*n_neighbors* -> Number of nearest neighbors.  
+
+*init_seed* -> Initial seed for the computation.  
+  
+**[scanpy_UMAP]**  
+*n_comps* -> Number of components obtained from UMAP. Possible values: **0** (mantain all the components available - no reduction), any **n>0** (reduce *to* n components), any **n<0** (reduce *by* n dimensions from the maximum number of available components). Indeed, this value must not exceed the effective number of components available.  
+
+*init_seed* -> Initial seed for the computation.  
+  
+**[scanpy_PHENOGRAPH]**  
+clustering_algo -> Clustering algorithm, whether *louvain* or *leiden*.  
+
+*n_neighbors* -> Number of nearest neighbors.  
+
+n_jobs -> Number of threads (multiprocessing).
+
+
+**[scanpy_PCA_plot]**  
+No customization currently available.  
+
+**[scanpy_UMAP_plot]**  
+No customization currently available.  
+  
+**[scanpy_CLUSTERS_plot]**  
+No customization currently available.  
+  
 
 ### Structure of the project  
 Verify that your input data is structured as expected, and tune the [configuration.txt](./configuration.txt) according to your needs. Once done, run the [clustering.py](./clustering.py) file.  
