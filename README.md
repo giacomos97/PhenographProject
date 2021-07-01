@@ -6,11 +6,19 @@ To run this code, install in your environment the following libraries.
 `anndata scanpy numpy pandas pathlib plotly datetime configparser uuid`  
 
 ## How to run the code  
-Following these instructions you may run the code without having to change it. First, you will set your own preferences into the [configuration.txt](./configuration.txt) file, such as the names of the dataset directories or the clustering parameters. Then you will have two options:  
-- run the [clustering.py](./clustering.py) file in your console  
-- use the interactive [demo_notebook.ipynb](./demo_notebook.ipynb)  
+Following these instructions you may run the code without performing any adaptation.  
+Verify that your input data is structured as expected, and tune the [configuration.txt](./configuration.txt) file according to your needs.
+Once done,you will have two options:  
+- run the [clustering.py](./clustering.py) file from your console  
+- explore the effect of the single functions with the interactive [demo_notebook.ipynb](./demo_notebook.ipynb)  
 
-Both documents implement the same procedure.
+Both implementations contain the same procedure, thus providing equivalent results.  
+   
+Check messages and results appearing in the console during execution.
+At each step, the temporary copy of the data will be updated into in the *temp* directory you selected.
+All plots shown will be saved inside the *figures* directory you also selected.  
+ 
+
 
 ### Structure of input data  
 The program expects **two** .csv files:  
@@ -48,7 +56,7 @@ Cell number must have exact correspondence in both files (i.e. cell number 1 in 
 
 *temp_dir* -> Path where output temporary files will be stored (automatically created if not existing). 
   
-**[scanpy_figures]**
+**[scanpy_figures]**  
 Parameters listed in this category will be provided to the *scanpy.set_figure_params* method. 
   
 **[scanpy_PCA]**  
@@ -82,15 +90,9 @@ No customization currently available.
   
 **[scanpy_CLUSTERS_plot]**  
 No customization currently available.  
-  
+   
 
-### Structure of the project  
-Verify that your input data is structured as expected, and tune the [configuration.txt](./configuration.txt) according to your needs. Once done, run the [clustering.py](./clustering.py) file.  
-Check messages and results appearing in the console during execution.
-At each step, a backup copy of the data will be saved in the *temp* directory you selected.
-All plots shown will also be saved inside the *figures* directory you also selected.  
-
-### References  
+## References  
 Check the following references for more details on the parameters available in each function.  
 
   
@@ -102,6 +104,7 @@ PhenoGraph:
 https://scanpy.readthedocs.io/en/stable/external/scanpy.external.tl.phenograph.html  
 
   
-Plotting:  
+Plotting PCA results:  
 https://scanpy.readthedocs.io/en/stable/api/scanpy.pl.pca.html  
+Plotting UMAP results:  
 https://scanpy.readthedocs.io/en/stable/api/scanpy.pl.umap.html  
