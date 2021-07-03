@@ -3,15 +3,13 @@
 """
 
 # IMPORTS
-import anndata
 import scanpy as sc
 import scanpy.external as sce
-import numpy as np
 from datetime import datetime
 import pandas as pd
 
 # FUNCTIONS
-def PCA(filename, temp_dir, config):
+def PCA(adata, temp_dir, config):
     '''
     Perform Principal Component Analysis on the dataset identified by filename in temp_dir.
     Use parameters in scanpy_PCA section of the configuration file.
@@ -34,8 +32,6 @@ def PCA(filename, temp_dir, config):
     '''
     
     print(f"[{datetime.now()}] PCA started.")
-    # Retrieve dataset
-    adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
     
     # Setup
     n_comps = int(config.get('scanpy_PCA', 'n_comps'))
@@ -57,11 +53,9 @@ def PCA(filename, temp_dir, config):
     
     print(f"[{datetime.now()}] PCA completed.")
     
-    adata.write(f'{temp_dir}/{filename}.h5ad')
-    
-    return filename
+    return adata
 
-def NEIGHBORS(filename, temp_dir, config):
+def NEIGHBORS(adata, temp_dir, config):
     '''
     Compute a neighborhood graph on the dataset identified by filename in temp_dir.
     Use parameters in scanpy_NEIGHBORS section of the configuration file.
@@ -84,8 +78,6 @@ def NEIGHBORS(filename, temp_dir, config):
     '''
     
     print(f"[{datetime.now()}] NEIGHBORS started.")
-    # Retrieve dataset
-    adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
     
     # Setup
     n_comps = int(config.get('scanpy_NEIGHBORS', 'n_comps'))
@@ -112,11 +104,9 @@ def NEIGHBORS(filename, temp_dir, config):
 
     print(f"[{datetime.now()}] NEIGHBORS completed.")
     
-    adata.write(f'{temp_dir}/{filename}.h5ad')
+    return adata
     
-    return filename
-    
-def UMAP(filename, temp_dir, config):
+def UMAP(adata, temp_dir, config):
     '''
     Perform dimensional reduction with UMAP on the dataset identified by filename in temp_dir.
     Use parameters in scanpy_UMAP section of the configuration file.
@@ -139,8 +129,6 @@ def UMAP(filename, temp_dir, config):
     '''
     
     print(f"[{datetime.now()}] UMAP started.")
-    # Retrieve dataset
-    adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
     
     # Setup
     n_comps = int(config.get('scanpy_UMAP', 'n_comps'))
@@ -164,11 +152,9 @@ def UMAP(filename, temp_dir, config):
 
     print(f"[{datetime.now()}] UMAP completed.")
     
-    adata.write(f'{temp_dir}/{filename}.h5ad')
-    
-    return filename
+    return adata
 
-def PHENOGRAPH(filename, temp_dir, config):
+def PHENOGRAPH(adata, temp_dir, config):
     '''
     Perform clustering with PhenoGraph on the dataset identified by filename in temp_dir.
     Use parameters in scanpy_PHENOGRAPH section of the configuration file.
@@ -191,8 +177,6 @@ def PHENOGRAPH(filename, temp_dir, config):
     '''
     
     print(f"[{datetime.now()}] PHENOGRAPH started.")
-    # Retrieve dataset
-    adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
     
     # Setup
     clustering_algo = config.get('scanpy_PHENOGRAPH', 'clustering_algo')
@@ -220,6 +204,4 @@ def PHENOGRAPH(filename, temp_dir, config):
 
     print(f"[{datetime.now()}] PHENOGRAPH completed.")
     
-    adata.write(f'{temp_dir}/{filename}.h5ad')
-    
-    return filename
+    return adata

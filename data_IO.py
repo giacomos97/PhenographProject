@@ -3,13 +3,13 @@
 """
 
 # IMPORTS
-from anndata import AnnData
+import anndata
 import pandas as pd
 from datetime import datetime
 import uuid
 
 # FUNCTIONS
-def READ(data_source, coordinates_source, temp_dir, config):
+def READ_SOURCE(data_source, coordinates_source, temp_dir, config):
     '''
     Read original dataset containing single-cell measurements and spatial coordinates,
     then store their cleaned copy with an uniquely identifying name.
@@ -56,7 +56,7 @@ def READ(data_source, coordinates_source, temp_dir, config):
     coordinates.astype('float', copy = False)
     
     # Converto to AnnData and save to temp file
-    adata = AnnData(data)    
+    adata = anndata.AnnData(data)    
     adata.write(f'{temp_dir}/{filename}.h5ad')
     
     # Save coordinates file
@@ -65,3 +65,74 @@ def READ(data_source, coordinates_source, temp_dir, config):
     print(f"[{datetime.now()}] Data reading completed.")
     
     return filename
+
+
+def READ_ADATA(filename, temp_dir):
+    '''
+    
+
+    Parameters
+    ----------
+    filename : TYPE
+        DESCRIPTION.
+    temp_dir : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    adata : TYPE
+        DESCRIPTION.
+
+    '''
+    
+    adata = anndata.read_h5ad(f'{temp_dir}/{filename}.h5ad')
+    
+    return adata
+
+
+def WRITE_ADATA(adata, filename, temp_dir):
+    '''
+    
+
+    Parameters
+    ----------
+    adata : TYPE
+        DESCRIPTION.
+    filename : TYPE
+        DESCRIPTION.
+    temp_dir : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    adata : TYPE
+        DESCRIPTION.
+
+    '''
+    
+    adata.write(f'{temp_dir}/{filename}.h5ad')
+    
+    return filename
+
+
+def READ_COORDINATES(filename, temp_dir):
+    '''
+    
+
+    Parameters
+    ----------
+    filename : TYPE
+        DESCRIPTION.
+    temp_dir : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    coordinates : TYPE
+        DESCRIPTION.
+
+    '''
+    
+    coordinates = pd.read_csv(f'{temp_dir}/{filename}_coordinates.csv', header = "infer")
+    
+    return coordinates
