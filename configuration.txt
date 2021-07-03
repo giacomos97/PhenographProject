@@ -38,16 +38,9 @@ title = PCA results example
 [scanpy_UMAP_plot]
 components = 1,2
 projection = 2d
-palette = sc.pl.palettes.vega_20_scanpy
 legend_fontsize = 10
 
-
 [scanpy_CLUSTERS_plot]
-title = f'Spatial distribution of clustered cells (k = {n_neighbors}) - Q = {Q}'
-showlegend = True
 xaxis_title = X
 yaxis_title = Y
-autosize = False
-width = 800
-height = 800
 

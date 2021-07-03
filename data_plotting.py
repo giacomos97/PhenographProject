@@ -33,10 +33,7 @@ def PCA(adata, filename, temp_dir, figures_dir, params):
     
     # Plot PCA results
     sc.pl.pca(adata,
-              #**dict(config.items('scanpy_PCA_plot')),
-              components = '1,2',
-              projection = '2d',
-              title = 'PCA results example',
+              **params,
               save = f'_{filename}.png'
             )
         
@@ -64,15 +61,12 @@ def UMAP(adata, filename, temp_dir, figures_dir, params):
         Unique identifier of this dataset stored in temp_dir.
 
     '''
-    
+
     # Plot UMAP results
     sc.pl.umap(adata,
-               #**dict(config.items('scanpy_UMAP_plot')),
-               components = '1,2',
-               projection = '2d',
+               **params,
                palette = sc.pl.palettes.vega_20_scanpy,
-               legend_fontsize = 10,
-               color = ['PhenoGraph_clusters_Categorical'],
+               color = 'PhenoGraph_clusters_Categorical',
                save = f'_{filename}.png'
             )
         
@@ -125,13 +119,10 @@ def CLUSTERS(adata, coordinates, filename, temp_dir, figures_dir, params):
                                 )
                      )
     
-    #fig.update_layout(**dict(config.items('scanpy_CLUSTERS_plot')))
-    
-    fig.update_layout(title = f'Spatial distribution of clustered cells (k = {n_neighbors}) - Q = {Q}',
-                      showlegend = True,
-                      xaxis_title = 'X',
-                      yaxis_title = 'Y',
+    fig.update_layout(title = f'Spatial distribution of clustered cells - run {filename}',
+                      **params,
                       autosize = False,
+                      showlegend = True,
                       width = 800,
                       height = 800
                       )
