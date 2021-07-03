@@ -16,11 +16,11 @@ def READ_SOURCE(data_source, coordinates_source, temp_dir):
 
     Parameters
     ----------
-    data_source : path object of pathlib module.
+    data_source : path object of pathlib module
         Directory where to read the original dataset containing single-cell measurements.
-    coordinates_source : path object of pathlib module.
+    coordinates_source : path object of pathlib module
         Directory where to read the original dataset containing spatial coordinates.
-    temp_dir : path object of pathlib module.
+    temp_dir : path object of pathlib module
         Directory where to store the temporary copy of the datasets.
 
     Returns
@@ -67,19 +67,19 @@ def READ_SOURCE(data_source, coordinates_source, temp_dir):
 
 def READ_ADATA(filename, temp_dir):
     '''
-    
+    Read and return AnnData object from temporary directory.
 
     Parameters
     ----------
-    filename : TYPE
-        DESCRIPTION.
-    temp_dir : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier generated for this dataset stored in temp_dir.
+    temp_dir : path object of pathlib module
+        Directory where to store the temporary copy of the datasets.
 
     Returns
     -------
-    adata : TYPE
-        DESCRIPTION.
+    adata : AnnData object
+        Database containing work data.
 
     '''
     
@@ -90,21 +90,21 @@ def READ_ADATA(filename, temp_dir):
 
 def WRITE_ADATA(adata, filename, temp_dir):
     '''
-    
+    Write AnnData object to temporary directory.
 
     Parameters
     ----------
-    adata : TYPE
-        DESCRIPTION.
-    filename : TYPE
-        DESCRIPTION.
-    temp_dir : TYPE
-        DESCRIPTION.
+    adata : AnnData object
+        Database containing work data.
+    filename : str
+        Unique identifier generated for this dataset stored in temp_dir.
+    temp_dir : path object of pathlib module
+        Directory where to store the temporary copy of the datasets.
 
     Returns
     -------
-    adata : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier generated for this dataset stored in temp_dir.
 
     '''
     
@@ -115,19 +115,19 @@ def WRITE_ADATA(adata, filename, temp_dir):
 
 def READ_COORDINATES(filename, temp_dir):
     '''
-    
+    Read and return Pandas DataFrame object from temporary directory.
 
     Parameters
     ----------
-    filename : TYPE
-        DESCRIPTION.
-    temp_dir : TYPE
-        DESCRIPTION.
+    filename : str
+        Unique identifier generated for this dataset stored in temp_dir.
+    temp_dir : path object of pathlib module
+        Directory where to store the temporary copy of the datasets.
 
     Returns
     -------
-    coordinates : TYPE
-        DESCRIPTION.
+    coordinates : Pandas DataFrame object
+        DataFrame containing cells' coordinates.
 
     '''
     

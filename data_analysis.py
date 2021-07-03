@@ -9,25 +9,22 @@ from datetime import datetime
 import pandas as pd
 
 # FUNCTIONS
-def PCA(adata, temp_dir, params):
+def PCA(adata, params):
     '''
-    Perform Principal Component Analysis on the dataset identified by filename in temp_dir.
-    Use parameters in scanpy_PCA section of the configuration file.
-    Overwrite the dataset in temp_dir with the achieved results.
+    Perform Principal Component Analysis on the input dataset, considering
+    parameters provided.
     
     Parameters
     ----------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
-    temp_dir : path object of pathlib module.
-        Directory where the temporary copy of the datasets is stored.
-    config : ConfigParser object of configparser module.
-        Configuration file.
+    adata : AnnData object
+        Database containing cleaned copy of work data.
+    params : dict
+        Parameters to be provided to analysis function.
 
     Returns
     -------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
+    adata : AnnData object
+        Database containing work data.
 
     '''
     
@@ -55,25 +52,22 @@ def PCA(adata, temp_dir, params):
     
     return adata
 
-def NEIGHBORS(adata, temp_dir, params):
+def NEIGHBORS(adata, params):
     '''
-    Compute a neighborhood graph on the dataset identified by filename in temp_dir.
-    Use parameters in scanpy_NEIGHBORS section of the configuration file.
-    Overwrite the dataset in temp_dir with the achieved results.
+    Compute a neighborhood graph on the input dataset, considering parameters
+    provided.
     
     Parameters
     ----------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
-    temp_dir : path object of pathlib module.
-        Directory where the temporary copy of the datasets is stored.
-    config : ConfigParser object of configparser module.
-        Configuration file.
+    adata : AnnData object
+        Database containing cleaned copy of work data.
+    params : dict
+        Parameters to be provided to analysis function.
 
     Returns
     -------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
+    adata : AnnData object
+        Database containing work data.
 
     '''
     
@@ -106,25 +100,22 @@ def NEIGHBORS(adata, temp_dir, params):
     
     return adata
     
-def UMAP(adata, temp_dir, params):
+def UMAP(adata, params):
     '''
-    Perform dimensional reduction with UMAP on the dataset identified by filename in temp_dir.
-    Use parameters in scanpy_UMAP section of the configuration file.
-    Overwrite the dataset in temp_dir with the achieved results.
+    Perform dimensional reduction with UMAP on the input dataset, considering
+    parameters provided.
     
     Parameters
     ----------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
-    temp_dir : path object of pathlib module.
-        Directory where the temporary copy of the datasets is stored.
-    config : ConfigParser object of configparser module.
-        Configuration file.
+    adata : AnnData object
+        Database containing cleaned copy of work data.
+    params : dict
+        Parameters to be provided to analysis function.
 
     Returns
     -------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
+    adata : AnnData object
+        Database containing work data.
 
     '''
     
@@ -154,25 +145,22 @@ def UMAP(adata, temp_dir, params):
     
     return adata
 
-def PHENOGRAPH(adata, temp_dir, params):
+def PHENOGRAPH(adata, params):
     '''
-    Perform clustering with PhenoGraph on the dataset identified by filename in temp_dir.
-    Use parameters in scanpy_PHENOGRAPH section of the configuration file.
-    Overwrite the dataset in temp_dir with the achieved results.
+    Perform clustering with PhenoGraph on the input dataset, considering
+    parameters provided.
     
     Parameters
     ----------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
-    temp_dir : path object of pathlib module.
-        Directory where the temporary copy of the datasets is stored.
-    config : ConfigParser object of configparser module.
-        Configuration file.
+    adata : AnnData object
+        Database containing cleaned copy of work data.
+    params : dict
+        Parameters to be provided to analysis function.
 
     Returns
     -------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
+    adata : AnnData object
+        Database containing work data.
 
     '''
     

@@ -8,26 +8,26 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # FUNCTIONS
-def PCA(adata, filename, temp_dir, figures_dir, params):
+def PCA(adata, filename, figures_dir, params):
     '''
-    Plot Principal Component Analysis results from the dataset identified by filename in temp_dir.
-    Use parameters in scanpy_PCA_plot section of the configuration file.
+    Plot Principal Component Analysis results from the input dataset, 
+    considering parameters provided.
 
     Parameters
     ----------
+    adata : AnnData object
+        Database containing cleaned copy of work data.
     filename : str
         Unique identifier of this dataset stored in temp_dir.
-    temp_dir : path object of pathlib module.
-        Directory where the temporary copy of the datasets is stored.
-    figures_dir : TYPE
+    figures_dir : path object of pathlib module
         Directory where to store plots and figures.
-    config : ConfigParser object of configparser module.
-        Configuration file.
+    params : dict
+        Parameters to be provided to analysis function.
 
     Returns
     -------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
+    bool
+        Successful function execution.
 
     '''
     
@@ -39,26 +39,26 @@ def PCA(adata, filename, temp_dir, figures_dir, params):
         
     return True
 
-def UMAP(adata, filename, temp_dir, figures_dir, params):
+def UMAP(adata, filename, figures_dir, params):
     '''
-    Plot UMAP representations from the dataset identified by filename in temp_dir.
-    Use parameters in scanpy_UMAP_plot section of the configuration file.
+    Plot UMAP representations from the input dataset, considering parameters
+    provided.
 
     Parameters
     ----------
+    adata : AnnData object
+        Database containing cleaned copy of work data.
     filename : str
         Unique identifier of this dataset stored in temp_dir.
-    temp_dir : path object of pathlib module.
-        Directory where the temporary copy of the datasets is stored.
-    figures_dir : TYPE
+    figures_dir : path object of pathlib module
         Directory where to store plots and figures.
-    config : ConfigParser object of configparser module.
-        Configuration file.
+    params : dict
+        Parameters to be provided to analysis function.
 
     Returns
     -------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
+    bool
+        Successful function execution.
 
     '''
 
@@ -72,27 +72,28 @@ def UMAP(adata, filename, temp_dir, figures_dir, params):
         
     return True
 
-def CLUSTERS(adata, coordinates, filename, temp_dir, figures_dir, params):
+def CLUSTERS(adata, coordinates, filename, figures_dir, params):
     '''
     Create an interactive plot of the spatial distribution of clustered cells
-    from the dataset identified by filename in temp_dir.
-    Use parameters in scanpy_CLUSTERS_plot section of the configuration file.
+    from the input dataset, considering parameters provided.
 
     Parameters
     ----------
+    adata : AnnData object
+        Database containing cleaned copy of work data.
+    coordinates : Pandas DataFrame object
+        DataFrame containing cells' coordinates.
     filename : str
         Unique identifier of this dataset stored in temp_dir.
-    temp_dir : path object of pathlib module.
-        Directory where the temporary copy of the datasets is stored.
-    figures_dir : TYPE
+    figures_dir : path object of pathlib module
         Directory where to store plots and figures.
-    config : ConfigParser object of configparser module.
-        Configuration file.
+    params : dict
+        Parameters to be provided to analysis function.
 
     Returns
     -------
-    filename : str
-        Unique identifier of this dataset stored in temp_dir.
+    bool
+        Successful function execution.
 
     '''
     

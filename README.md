@@ -75,21 +75,20 @@ Parameters listed in this category will be provided to the *scanpy.set_figure_pa
 *init_seed* -> Initial seed for the computation.  
   
 **[scanpy_PHENOGRAPH]**  
-clustering_algo -> Clustering algorithm, whether *louvain* or *leiden*.  
+*clustering_algo* -> Clustering algorithm, whether 'louvain' or 'leiden'.  
 
 *n_neighbors* -> Number of nearest neighbors.  
 
-n_jobs -> Number of threads (multiprocessing).
-
+*n_jobs* -> Number of threads (multiprocessing).  
 
 **[scanpy_PCA_plot]**  
-No customization currently available.  
+Parameters listed in this category will be provided to the *sc.pl.pca* method.  
 
 **[scanpy_UMAP_plot]**  
-No customization currently available.  
+Parameters listed in this category will be provided to the *sc.pl.umap* method. 
   
 **[scanpy_CLUSTERS_plot]**  
-No customization currently available.  
+Parameters listed in this category will be provided to the *fig.update_layout* method.  
    
 
 ## References  
@@ -97,14 +96,14 @@ Check the following references for more details on the parameters available in e
 
   
 Principal component analysis (PCA):  
-https://scanpy.readthedocs.io/en/stable/api/scanpy.tl.pca.html  
+https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.pca.html
 Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP):  
-https://scanpy.readthedocs.io/en/stable/api/scanpy.tl.umap.html  
+https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.umap.html
 PhenoGraph:  
-https://scanpy.readthedocs.io/en/stable/external/scanpy.external.tl.phenograph.html  
+https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.tl.phenograph.html
 
   
 Plotting PCA results:  
-https://scanpy.readthedocs.io/en/stable/api/scanpy.pl.pca.html  
+https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.pca.html 
 Plotting UMAP results:  
-https://scanpy.readthedocs.io/en/stable/api/scanpy.pl.umap.html  
+https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.umap.html
