@@ -8,7 +8,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # FUNCTIONS
-def PCA(adata, filename, temp_dir, figures_dir, config):
+def PCA(adata, filename, temp_dir, figures_dir, params):
     '''
     Plot Principal Component Analysis results from the dataset identified by filename in temp_dir.
     Use parameters in scanpy_PCA_plot section of the configuration file.
@@ -42,7 +42,7 @@ def PCA(adata, filename, temp_dir, figures_dir, config):
         
     return True
 
-def UMAP(adata, filename, temp_dir, figures_dir, config):
+def UMAP(adata, filename, temp_dir, figures_dir, params):
     '''
     Plot UMAP representations from the dataset identified by filename in temp_dir.
     Use parameters in scanpy_UMAP_plot section of the configuration file.
@@ -78,7 +78,7 @@ def UMAP(adata, filename, temp_dir, figures_dir, config):
         
     return True
 
-def CLUSTERS(adata, coordinates, filename, temp_dir, figures_dir, config):
+def CLUSTERS(adata, coordinates, filename, temp_dir, figures_dir, params):
     '''
     Create an interactive plot of the spatial distribution of clustered cells
     from the dataset identified by filename in temp_dir.

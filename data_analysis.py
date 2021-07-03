@@ -9,7 +9,7 @@ from datetime import datetime
 import pandas as pd
 
 # FUNCTIONS
-def PCA(adata, temp_dir, config):
+def PCA(adata, temp_dir, params):
     '''
     Perform Principal Component Analysis on the dataset identified by filename in temp_dir.
     Use parameters in scanpy_PCA section of the configuration file.
@@ -34,7 +34,7 @@ def PCA(adata, temp_dir, config):
     print(f"[{datetime.now()}] PCA started.")
     
     # Setup
-    n_comps = int(config.get('scanpy_PCA', 'n_comps'))
+    n_comps = int(params['n_comps'])
 
     # Check number of components
     max_n_comps = len(adata.var_names)-1
@@ -55,7 +55,7 @@ def PCA(adata, temp_dir, config):
     
     return adata
 
-def NEIGHBORS(adata, temp_dir, config):
+def NEIGHBORS(adata, temp_dir, params):
     '''
     Compute a neighborhood graph on the dataset identified by filename in temp_dir.
     Use parameters in scanpy_NEIGHBORS section of the configuration file.
@@ -80,9 +80,9 @@ def NEIGHBORS(adata, temp_dir, config):
     print(f"[{datetime.now()}] NEIGHBORS started.")
     
     # Setup
-    n_comps = int(config.get('scanpy_NEIGHBORS', 'n_comps'))
-    n_neighbors = int(config.get('scanpy_NEIGHBORS', 'n_neighbors'))
-    init_seed = int(config.get('scanpy_NEIGHBORS', 'init_seed'))
+    n_comps = int(params['n_comps'])
+    n_neighbors = int(params['n_neighbors'])
+    init_seed = int(params['init_seed'])
 
     # Check number of components
     max_n_comps = len(adata.var_names)-1
@@ -106,7 +106,7 @@ def NEIGHBORS(adata, temp_dir, config):
     
     return adata
     
-def UMAP(adata, temp_dir, config):
+def UMAP(adata, temp_dir, params):
     '''
     Perform dimensional reduction with UMAP on the dataset identified by filename in temp_dir.
     Use parameters in scanpy_UMAP section of the configuration file.
@@ -131,8 +131,8 @@ def UMAP(adata, temp_dir, config):
     print(f"[{datetime.now()}] UMAP started.")
     
     # Setup
-    n_comps = int(config.get('scanpy_UMAP', 'n_comps'))
-    init_seed = int(config.get('scanpy_UMAP', 'init_seed'))
+    n_comps = int(params['n_comps'])
+    init_seed = int(params['init_seed'])
 
     # Check number of components
     max_n_comps = len(adata.var_names)-1
@@ -154,7 +154,7 @@ def UMAP(adata, temp_dir, config):
     
     return adata
 
-def PHENOGRAPH(adata, temp_dir, config):
+def PHENOGRAPH(adata, temp_dir, params):
     '''
     Perform clustering with PhenoGraph on the dataset identified by filename in temp_dir.
     Use parameters in scanpy_PHENOGRAPH section of the configuration file.
@@ -179,9 +179,9 @@ def PHENOGRAPH(adata, temp_dir, config):
     print(f"[{datetime.now()}] PHENOGRAPH started.")
     
     # Setup
-    clustering_algo = config.get('scanpy_PHENOGRAPH', 'clustering_algo')
-    n_neighbors = int(config.get('scanpy_PHENOGRAPH', 'n_neighbors'))
-    n_jobs = int(config.get('scanpy_PHENOGRAPH', 'n_jobs'))
+    clustering_algo = params['clustering_algo']
+    n_neighbors = int(params['n_neighbors'])
+    n_jobs = int(params['n_jobs'])
    
     # Perform PHENOGRAPH
     '''
