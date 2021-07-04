@@ -60,8 +60,10 @@ Cell number must have exact correspondence in both files (i.e. cell number 1 in 
 Parameters listed in this category will be provided to the *scanpy.set_figure_params* method. 
   
 **[scanpy_PCA]**  
-*n_comps* -> Number of components obtained from PCA. Possible values: **0** (mantain all the components available - no reduction), any **n>0** (reduce *to* n components), any **n<0** (reduce *by* n dimensions from the maximum number of available components). Indeed, this value must not exceed the effective number of components available.
-  
+*n_comps* -> Number of components obtained from PCA. Possible values: **0** (mantain all the components available - no reduction), any **n>0** (reduce *to* n components), any **n<0** (reduce *by* n dimensions from the maximum number of available components). Indeed, this value must not exceed the effective number of components available.  
+
+*init_seed* -> Initial seed for the computation.  
+
 **[scanpy_NEIGHBORS]**  
 *n_comps* -> Number of components obtained from neighborhood graph. Possible values: **0** (mantain all the components available - no reduction), any **n>0** (reduce *to* n components), any **n<0** (reduce *by* n dimensions from the maximum number of available components). Indeed, this value must not exceed the effective number of components available.  
 
@@ -98,7 +100,7 @@ Check the following references for more details on the parameters available in e
 Principal component analysis (PCA):  
 https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.pca.html
 Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP):  
-https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.umap.html
+https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.umap.html  
 PhenoGraph:  
 https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.tl.phenograph.html
 
