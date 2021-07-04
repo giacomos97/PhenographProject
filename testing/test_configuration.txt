@@ -10,6 +10,7 @@ dpi = 600
 
 [scanpy_PCA]
 n_comps = 0
+init_seed = 0
 
 
 [scanpy_NEIGHBORS]

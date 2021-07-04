@@ -32,6 +32,7 @@ def PCA(adata, params):
     
     # Setup
     n_comps = int(params['n_comps'])
+    init_seed = int(params['init_seed'])
 
     # Check number of components
     max_n_comps = len(adata.var_names)-1
@@ -45,6 +46,7 @@ def PCA(adata, params):
     # Perform PCA
     sc.tl.pca(adata,
               n_comps = n_comps,
+              random_state = init_seed,
               copy = False
               ) 
     
