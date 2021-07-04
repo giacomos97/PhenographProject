@@ -11,6 +11,7 @@ import configparser
 import data_IO
 import data_analysis
 
+
 # SETUP
 # Reading configuration file
 config = configparser.ConfigParser()
@@ -39,6 +40,7 @@ communities_expected = [9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
                         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
                         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
+
 # TESTING FUNCTIONS
 def test_source_data_reading():
     '''
@@ -46,6 +48,7 @@ def test_source_data_reading():
     to what expected: 150x10 for measurements dataset and 150x2 for coordinates
     dataset.
     '''
+    
     # Clean original testing files
     filename = data_IO.READ_SOURCE(data_source, coordinates_source, temp_dir)
     
@@ -62,6 +65,11 @@ def test_source_data_reading():
 
  
 def test_clustering_reproducibility():
+    '''
+    Verify that two identical executions of the clustering process provide the
+    same result.
+    '''
+    
     # Clean original testing files
     filename = data_IO.READ_SOURCE(data_source, coordinates_source, temp_dir)
     
@@ -88,9 +96,12 @@ def test_clustering_reproducibility():
     assert np.array_equal(communities_1, communities_2), 'Communitiy allocation does not match between the two executions.'
     
 
-    
-
 def test_clustering_reliability():
+    '''
+    Verify that the clustering process assigns the cells to the expected 
+    community.
+    '''
+    
     # Clean original testing files
     filename = data_IO.READ_SOURCE(data_source, coordinates_source, temp_dir)
     
