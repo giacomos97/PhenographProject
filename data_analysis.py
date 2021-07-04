@@ -192,4 +192,4 @@ def PHENOGRAPH(adata, params):
 
     print(f"[{datetime.now()}] PHENOGRAPH completed.")
     
-    return adata
+    return adata, communities, graph, Q

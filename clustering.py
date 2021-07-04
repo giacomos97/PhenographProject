@@ -50,7 +50,7 @@ adata = data_IO.READ_ADATA(filename, temp_dir)
 adata = data_analysis.PCA(adata, PCA_params)
 adata = data_analysis.NEIGHBORS(adata, NEIGHBORS_params)
 adata = data_analysis.UMAP(adata, UMAP_params)
-adata = data_analysis.PHENOGRAPH(adata, PHENOGRAPH_params)
+adata, communities, graph, Q = data_analysis.PHENOGRAPH(adata, PHENOGRAPH_params)
 
 filename = data_IO.WRITE_ADATA(adata, filename, temp_dir)
 
