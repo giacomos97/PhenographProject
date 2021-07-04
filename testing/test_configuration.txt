@@ -1,0 +1,45 @@
+[paths]
+data_source : ./testing/test_SCmeasurements.csv
+coordinates_source : ./testing/test_coordinates.csv
+temp_dir : ./testing
+
+
+[scanpy_figures]
+dpi = 600
+
+
+[scanpy_PCA]
+n_comps = 0
+
+
+[scanpy_NEIGHBORS]
+n_comps = 2
+n_neighbors = 15
+init_seed = 0
+
+
+[scanpy_UMAP]
+n_comps = 2
+init_seed = 0
+
+
+[scanpy_PHENOGRAPH]
+clustering_algo = louvain
+n_neighbors = 15
+n_jobs = 4
+
+
+[scanpy_PCA_plot]
+components = 1,2
+projection = 2d
+title = PCA results example
+
+[scanpy_UMAP_plot]
+components = 1,2
+projection = 2d
+legend_fontsize = 10
+
+[scanpy_CLUSTERS_plot]
+xaxis_title = X
+yaxis_title = Y
+
