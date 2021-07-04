@@ -4,7 +4,16 @@ Repository dedicated to my project on PhenoGraph.
 ## Pre-requisites  
 To run this code, install in your environment the following libraries.  
 `anndata scanpy numpy pandas pathlib plotly datetime configparser uuid`  
+  
+## Testing  
+To perform the testing routine, when in the main directory of this project run
+`pytest testing.py`  
+in your python terminal. The following tests will be performed:  
+- *test_source_data_reading*: verify proper functionality of I/O functions  
+- *test_clustering_reproducibility*: verify whether two identical executions of the clustering process provide the same result  
+- *test_clustering_reliability* : verify proper functionality of clustering process by comparing results with the expected outcome  
 
+  
 ## How to run the code  
 Following these instructions you may run the code without performing any adaptation.  
 Verify that your input data is structured as expected, and tune the [configuration.txt](./configuration.txt) file according to your needs.
