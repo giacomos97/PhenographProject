@@ -1,33 +1,29 @@
 # PhenoGraph clustering project  
-Repository dedicated to my project on PhenoGraph.  
+This project implements PhenoGraph as clustering method for Single-Cell measurements.  
+Once provided both the measurements dataset and the spatial coordinates of the cells, this script will perform the necessary steps to generate a spatial representation of the cells clusters.
+The image below summarizes the steps that make up the process.
+![workflow_representation](./assets/data_flow.png)  
 
 ## Pre-requisites  
 To run this code, install in your environment the following libraries.  
 `anndata scanpy numpy pandas pathlib plotly datetime configparser uuid`  
   
 ## Testing  
-To perform the testing routine, when in the main directory of this project run
-`pytest testing.py`  
-in your python terminal. The following tests will be performed:  
+To perform the testing routine, when in the main directory of this project run `pytest testing.py` from your python console. The following tests will be performed:  
 - *test_source_data_reading*: verify proper functionality of I/O functions  
 - *test_clustering_reproducibility*: verify whether two identical executions of the clustering process provide the same result  
-- *test_clustering_reliability* : verify proper functionality of clustering process by comparing results with the expected outcome  
-
+- *test_clustering_reliability*: verify proper functionality of clustering process by comparing results with the expected outcome  
   
 ## How to run the code  
-Following these instructions you may run the code without performing any adaptation.  
-Verify that your input data is structured as expected, and tune the [configuration.txt](./configuration.txt) file according to your needs.
+Following these instructions you may run the code without performing any adaptation. All user parameters can be customized inside an external configuration file.  
+
+First, verify that your input data is structured as expected, and tune the [configuration.txt](./configuration.txt) file according to your needs.
 Once done,you will have two options:  
-- run the [clustering.py](./clustering.py) file from your console  
+- run the [clustering.py](./clustering.py) file from your python console  
 - explore the effect of the single functions with the interactive [demo_notebook.ipynb](./demo_notebook.ipynb)  
 
 Both implementations contain the same procedure, thus providing equivalent results.  
-   
-Check messages and results appearing in the console during execution.
-At each step, the temporary copy of the data will be updated into in the *temp* directory you selected.
-All plots shown will be saved inside the *figures* directory you also selected.  
- 
-
+Check messages and results appearing in the console during execution. All plots shown will be saved inside the *figures* directory you selected.  
 
 ### Structure of input data  
 The program expects **two** .csv files:  
@@ -101,7 +97,14 @@ Parameters listed in this category will be provided to the *sc.pl.umap* method.
 **[scanpy_CLUSTERS_plot]**  
 Parameters listed in this category will be provided to the *fig.update_layout* method.  
    
-
+## Tips  
+With the current implementation, results obtained at each intermediate step might get lost in case of accidental/unexpected interruption before the complete execution of the process.
+To mitigate that risk, after each step you may add the line (currently present only at the end):  
+`filename = data_IO.WRITE_ADATA(adata, filename, temp_dir)`  
+This would allow you to store newly obtained results by overwriting the work dataset inside *temp* directory. At any time, you will be able to retrieve such file and continue the execution of the process from where you left off.
+To re-import a specific work dataset (check its filename) run:  
+`adata = data_IO.READ_ADATA(filename, temp_dir)`
+  
 ## References  
 Check the following references for more details on the parameters available in each function.  
 
@@ -115,6 +118,6 @@ https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.tl.phenograph.
 
   
 Plotting PCA results:  
-https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.pca.html 
+https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.pca.html  
 Plotting UMAP results:  
 https://scanpy.readthedocs.io/en/stable/generated/scanpy.pl.umap.html
