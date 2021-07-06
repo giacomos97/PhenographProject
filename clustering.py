@@ -33,7 +33,7 @@ UMAP_plot_params = dict(config.items('scanpy_UMAP_plot'))
 CLUSTERS_plot_params = dict(config.items('scanpy_CLUSTERS_plot'))
 
 # Scanpy parameters
-sc.settings.verbose = 3     # Min = 0, Max = 3
+sc.settings.verbose = 3     # 0: error, 1: warning, 2: info, 3: hint, 4: debugging.
 sc.set_figure_params(config.items('scanpy_figures'))
 sc.settings.figdir = figures_dir
 
