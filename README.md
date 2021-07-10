@@ -13,7 +13,8 @@ To perform the testing routine, when in the main directory of this project run `
 - *test_source_data_reading*: verify proper functionality of I/O functions  
 - *test_clustering_reproducibility*: verify whether two identical executions of the clustering process provide the same result  
 - *test_clustering_reliability*: verify proper functionality of clustering process by comparing results with the expected outcome  
-On an average laptopt, this routine might require approximately 2 minutes.  
+
+On an average laptop, this testing routine might require approximately 2 minutes.  
 
 ## How to run the code  
 Following these instructions you may run the code without performing any adaptation. All user parameters can be customized inside an external configuration file.  
@@ -39,7 +40,7 @@ For example:
 |  3  | 1.254862485568716 |  0.25684126698538 |  -0.0489567128639  |     |
 | ... |                   |                   |                    |     |  
 
-- **Another file containing the spatial coordinates of each cell**.  
+- **One file containing the spatial coordinates of each cell**.  
 The document should contain three comma-separated columns (without any header) describing: cell number, x coordinate, y coordinate.  
 For example:  
 
@@ -102,9 +103,12 @@ Parameters listed in this category will be provided to the *fig.update_layout* m
 ### Foresee backing up results at intermediate stages of the process  
 With the current implementation, results obtained at each intermediate step might get lost in case of accidental/unexpected interruption before the complete execution of the process.
 To mitigate that risk, after each step you may add the line (currently present only at the end):  
+
 `filename = data_IO.WRITE_ADATA(adata, filename, temp_dir)`  
+
 This would allow you to store newly obtained results by overwriting the work dataset inside *temp* directory. At any time, you will be able to retrieve such file and continue the execution of the process from where you left off.
 To re-import a specific work dataset (check its filename) run:  
+
 `adata = data_IO.READ_ADATA(filename, temp_dir)`  
 
 ### Possible warning messages  
@@ -118,7 +122,7 @@ Principal component analysis (PCA):
 https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.pca.html  
 Uniform Manifold Approximation and Projection for Dimension Reduction (UMAP):  
 https://scanpy.readthedocs.io/en/stable/generated/scanpy.tl.umap.html  
-PhenoGraph:  
+PhenoGraph clustering method:  
 https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.tl.phenograph.html  
   
 Plotting PCA results:  
